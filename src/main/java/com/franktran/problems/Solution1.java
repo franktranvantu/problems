@@ -1,18 +1,13 @@
 package com.franktran.problems;
 
-public class Solution1 implements RemoveDuplicates {
+public class Solution1 implements RemoveElement {
   @Override
-  public int solution(int[] nums) {
-    int[] temp = new int[nums.length];
+  public int solution(int[] nums, int val) {
     int k = 0;
-    for (int i = 0; i < nums.length-1; i++) {
-      if (nums[i] != nums[i+1]) {
-        temp[k++] = nums[i];
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] != val) {
+        nums[k++] = nums[i];
       }
-    }
-    temp[k++] = nums[nums.length-1];
-    for (int i = 0; i < k; i++) {
-      nums[i] = temp[i];
     }
     return k;
   }
