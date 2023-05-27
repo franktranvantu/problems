@@ -1,26 +1,32 @@
 package com.franktran.problems;
 
-// O(haystack.length() * needle.length())
-public class Solution1 implements Solution {
-  @Override
-  public int strStr(String haystack, String needle) {
-    if (haystack.length() < needle.length()) {
-      return -1;
-    }
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-    for (int i = 0; i <= haystack.length() - needle.length(); i++) {
-      int counter = 0;
-      for (int j = 0; j < needle.length(); j++) {
-        if (haystack.charAt(i+j) == needle.charAt(j)) {
-          counter++;
+// O(?)
+public class Solution1 implements Solution {
+
+  @Override
+  public int lengthOfLongestSubstring(String s) {
+    int complex = 0;
+    int output = 0;
+    for (int i = 0; i < s.length(); i++) {
+      Set<Character> set = new LinkedHashSet<>();
+      StringBuilder longest = new StringBuilder();
+      for (int j = i; j < s.length(); j++) {
+        boolean added = set.add(s.charAt(j));
+        complex++;
+        if (added) {
+          longest.append(s.charAt(j));
         } else {
           break;
         }
       }
-      if (counter == needle.length()) {
-        return i;
+      if (output < longest.length()) {
+        output = longest.length();
       }
     }
-    return -1;
+    System.out.println(complex);
+    return output;
   }
 }
